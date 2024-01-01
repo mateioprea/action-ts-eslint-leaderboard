@@ -1,8 +1,8 @@
-const TITLE = `## :shield: Eslint heroes`
+const TITLE = `## :shield: TS/Eslint heroes`
 const YOUR_SCORE = `### Your score[^1]:`
 const PODIUM = `### Podium[^2]:`
 const LEADERBOARD = `<summary> :bar_chart:  Full leaderboard</summary>`
-const FOOTNOTE = `[^1]: You earn \`+1\` point for each \`eslint-disable-next-line\` removed and \`+10\` for each \`eslint-disable\` (whole file) removed
+const FOOTNOTE = `[^1]: You earn \`+1\` point for each \`eslint-disable-next-line\` OR \`@ts-expect-error\` removed and \`+10\` for each \`eslint-disable\` OR \`@ts-nocheck\` (whole file) removed
 [^2]: The leaderboard restarts every Mondays at 00:00`
 
 interface LeaderboardEntry {

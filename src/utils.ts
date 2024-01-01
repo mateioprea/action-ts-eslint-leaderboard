@@ -1,6 +1,12 @@
 export const containsEslintDisableNextLine = (text: string): boolean =>
   text.trim().includes('eslint-disable-next-line')
 
+export const containsTsExpectError = (text: string): boolean =>
+  text.trim().includes('@ts-expect-error')
+
+export const containsTsNoCheck = (text: string): boolean  => 
+  text.trim().includes('@ts-nocheck')
+
 export const containsEslintDisableFile = (text: string): boolean =>
   text.trim().includes('eslint-disable ')
 

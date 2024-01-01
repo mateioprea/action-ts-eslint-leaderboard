@@ -2,6 +2,8 @@ import * as core from '@actions/core'
 import {
   containsEslintDisableFile,
   containsEslintDisableNextLine,
+  containsTsExpectError,
+  containsTsNoCheck,
   isFileIgnored
 } from './utils'
 import {getAuthor, getCommitDiff} from './git-commands'
@@ -84,9 +86,9 @@ export const getChangeScore = (change: Change): number => {
   let score = 0
   const scoreMultiplier = getCommitScoreMultiplier(change)
 
-  if (containsEslintDisableNextLine(change.content)) {
+  if (containsEslintDisableNextLine(change.content) || containsTsExpectError(change.content)) {
     score += scoreMultiplier * POINTS['NEXT_LINE']
-  } else if (containsEslintDisableFile(change.content)) {
+  } else if (containsEslintDisableFile(change.content || containsTsNoCheck(change.content)) {
     score += scoreMultiplier * POINTS['FILE']
   }
 
