@@ -1,4 +1,4 @@
-name: 'action-eslint-leaderboard'
+name: 'action-ts-eslint-leaderboard'
 description: 'Generate a leaderboard based on eslint-disable comments removed'
 author: 'john-waitforit'
 inputs:
