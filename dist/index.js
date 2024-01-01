@@ -400,12 +400,16 @@ exports.getFileScore = getFileScore;
 const getChangeScore = (change) => {
     let score = 0;
     const scoreMultiplier = getCommitScoreMultiplier(change);
-    if ((0, utils_1.containsEslintDisableNextLine)(change.content) ||
-        (0, utils_1.containsTsExpectError)(change.content)) {
+    if ((0, utils_1.containsEslintDisableNextLine)(change.content)) {
         score += scoreMultiplier * constants_1.POINTS['NEXT_LINE'];
     }
-    else if ((0, utils_1.containsEslintDisableFile)(change.content) ||
-        (0, utils_1.containsTsNoCheck)(change.content)) {
+    else if ((0, utils_1.containsEslintDisableFile)(change.content)) {
+        score += scoreMultiplier * constants_1.POINTS['FILE'];
+    }
+    if ((0, utils_1.containsTsExpectError)(change.content)) {
+        score += scoreMultiplier * constants_1.POINTS['NEXT_LINE'];
+    }
+    else if ((0, utils_1.containsTsNoCheck)(change.content)) {
         score += scoreMultiplier * constants_1.POINTS['FILE'];
     }
     return score;
@@ -434,9 +438,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.isFileIgnored = exports.getMonday = exports.containsEslintDisableFile = exports.containsTsNoCheck = exports.containsTsExpectError = exports.containsEslintDisableNextLine = void 0;
 const containsEslintDisableNextLine = (text) => text.trim().includes('eslint-disable-next-line');
 exports.containsEslintDisableNextLine = containsEslintDisableNextLine;
-const containsTsExpectError = (text) => text.trim().includes('@ts-expect-error');
+const containsTsExpectError = (text) => text.trim().includes('ts-expect-error');
 exports.containsTsExpectError = containsTsExpectError;
-const containsTsNoCheck = (text) => text.trim().includes('@ts-nocheck');
+const containsTsNoCheck = (text) => text.trim().includes('ts-nocheck');
 exports.containsTsNoCheck = containsTsNoCheck;
 const containsEslintDisableFile = (text) => text.trim().includes('eslint-disable ');
 exports.containsEslintDisableFile = containsEslintDisableFile;
